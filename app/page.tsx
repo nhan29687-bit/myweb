@@ -1,4 +1,4 @@
-import { SignInButton, SignUpButton, SignedIn, SignedOut, UserButton } from '@clerk/nextjs'
+import { SignInButton, SignUpButton, Show, UserButton } from '@clerk/nextjs'
 
 export default function Home() {
   return (
@@ -22,16 +22,16 @@ export default function Home() {
         width: '100%'
       }}>
         <h1 style={{ color: '#1f2937', marginBottom: '10px', fontSize: '26px', fontWeight: 'bold' }}>
-          My Web App
+          Hồ Sơ Cá Nhân
         </h1>
         <p style={{ color: '#6b7280', marginBottom: '30px', fontSize: '14px' }}>
-          Trang web của Nhân
+          Hệ thống quản lý thông tin bảo mật
         </p>
 
-        {/* Giao diện hiển thị KHI CHƯA ĐĂNG NHẬP */}
-        <SignedOut>
+        {/* HIỂN THỊ KHI CHƯA ĐĂNG NHẬP */}
+        <Show when="signed-out">
           <p style={{ color: '#4b5563', marginBottom: '20px', fontSize: '15px' }}>
-            Vui lòng đăng nhập hệ thống bảo mật để xem thông tin hồ sơ
+            Vui lòng đăng nhập để xem thông tin hồ sơ của Bùi Thùy Dương
           </p>
           <div style={{ display: 'flex', gap: '10px', justifyContent: 'center' }}>
             <div style={{
@@ -42,7 +42,7 @@ export default function Home() {
               fontWeight: 'bold',
               cursor: 'pointer'
             }}>
-              <SignInButton mode="modal" fallbackRedirectUrl="/" />
+              <SignInButton mode="modal" />
             </div>
             <div style={{
               backgroundColor: '#10b981',
@@ -52,13 +52,13 @@ export default function Home() {
               fontWeight: 'bold',
               cursor: 'pointer'
             }}>
-              <SignUpButton mode="modal" fallbackRedirectUrl="/" />
+              <SignUpButton mode="modal" />
             </div>
           </div>
-        </SignedOut>
+        </Show>
 
-        {/* Giao diện hiển thị KHI ĐA ĐĂNG NHẬP THÀNH CÔNG */}
-        <SignedIn>
+        {/* HIỂN THỊ KHI ĐÃ ĐĂNG NHẬP THÀNH CÔNG */}
+        <Show when="signed-in">
           <div style={{
             display: 'flex',
             flexDirection: 'column',
@@ -66,7 +66,7 @@ export default function Home() {
             gap: '20px'
           }}>
             <p style={{ color: '#059669', fontWeight: 'bold', fontSize: '16px' }}>
-              🎉 Đăng nhập bảo mật thành công!
+              🎉 Đăng nhập thành công!
             </p>
 
             {/* Khung hiển thị thông tin cá nhân */}
@@ -82,7 +82,7 @@ export default function Home() {
               gap: '12px'
             }}>
               <h2 style={{ fontSize: '18px', color: '#111827', borderBottom: '2px solid #2563eb', paddingBottom: '6px', marginBottom: '4px', fontWeight: 'bold' }}>
-                Thông Tin Cá Nhân
+                Thông Tin Chi Tiết
               </h2>
               <div>
                 <strong style={{ color: '#4b5563' }}>Họ và tên:</strong> <span style={{ color: '#111827', fontWeight: '500' }}>Bùi Thùy Dương</span>
@@ -99,11 +99,11 @@ export default function Home() {
             </div>
 
             <p style={{ color: '#6b7280', fontSize: '13px', marginTop: '10px' }}>
-              Nhấn vào ảnh đại diện bên dưới để quản lý hoặc đăng xuất:
+              Quản lý tài khoản hoặc đăng xuất tại đây:
             </p>
-            <UserButton afterSignOutUrl="/" />
+            <UserButton />
           </div>
-        </SignedIn>
+        </Show>
       </div>
     </div>
   )
