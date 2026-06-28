@@ -1,4 +1,4 @@
-import { SignInButton, SignUpButton, Show, UserButton } from '@clerk/nextjs'
+import { SignInButton, UserButton } from '@clerk/nextjs'
 
 export default function Home() {
   return (
@@ -21,89 +21,56 @@ export default function Home() {
         maxWidth: '450px',
         width: '100%'
       }}>
-        <h1 style={{ color: '#1f2937', marginBottom: '10px', fontSize: '26px', fontWeight: 'bold' }}>
+        <h1 style={{ color: '#1f2937', marginBottom: '30px', fontSize: '26px', fontWeight: 'bold' }}>
           Hồ Sơ Cá Nhân
         </h1>
-        <p style={{ color: '#6b7280', marginBottom: '30px', fontSize: '14px' }}>
-          Hệ thống quản lý thông tin bảo mật
-        </p>
 
-        {/* HIỂN THỊ KHI CHƯA ĐĂNG NHẬP */}
-        <Show when="signed-out">
-          <p style={{ color: '#4b5563', marginBottom: '20px', fontSize: '15px' }}>
-            Vui lòng đăng nhập để xem thông tin hồ sơ của Bùi Thùy Dương
-          </p>
-          <div style={{ display: 'flex', gap: '10px', justifyContent: 'center' }}>
-            <div style={{
-              backgroundColor: '#2563eb',
-              color: 'white',
-              padding: '10px 20px',
-              borderRadius: '6px',
-              fontWeight: 'bold',
-              cursor: 'pointer'
-            }}>
-              <SignInButton mode="modal" />
-            </div>
-            <div style={{
-              backgroundColor: '#10b981',
-              color: 'white',
-              padding: '10px 20px',
-              borderRadius: '6px',
-              fontWeight: 'bold',
-              cursor: 'pointer'
-            }}>
-              <SignUpButton mode="modal" />
-            </div>
+        {/* Khung hiển thị thông tin cá nhân hiện thẳng trên màn hình */}
+        <div style={{
+          backgroundColor: '#f9fafb',
+          border: '1px solid #e5e7eb',
+          borderRadius: '8px',
+          padding: '20px',
+          width: '100%',
+          textAlign: 'left',
+          display: 'flex',
+          flexDirection: 'column',
+          gap: '12px',
+          marginBottom: '25px'
+        }}>
+          <h2 style={{ fontSize: '18px', color: '#111827', borderBottom: '2px solid #2563eb', paddingBottom: '6px', marginBottom: '4px', fontWeight: 'bold' }}>
+            Thông Tin Chi Tiết
+          </h2>
+          <div>
+            <strong style={{ color: '#4b5563' }}>Họ và tên:</strong> <span style={{ color: '#111827', fontWeight: '500' }}>Bùi Thùy Dương</span>
           </div>
-        </Show>
+          <div>
+            <strong style={{ color: '#4b5563' }}>Ngày sinh:</strong> <span style={{ color: '#111827' }}>3/3/2013</span>
+          </div>
+          <div>
+            <strong style={{ color: '#4b5563' }}>Địa chỉ:</strong> <span style={{ color: '#111827' }}>Bầu Bàng, TP Hồ Chí Minh</span>
+          </div>
+          <div>
+            <strong style={{ color: '#4b5563' }}>Trường học:</strong> <span style={{ color: '#111827' }}>THCS Lai Uyên</span>
+          </div>
+        </div>
 
-        {/* HIỂN THỊ KHI ĐÃ ĐĂNG NHẬP THÀNH CÔNG */}
-        <Show when="signed-in">
+        {/* Khu vực nút bấm tài khoản bảo mật của Clerk */}
+        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '15px' }}>
           <div style={{
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
-            gap: '20px'
+            backgroundColor: '#2563eb',
+            color: 'white',
+            padding: '12px 25px',
+            borderRadius: '6px',
+            fontWeight: 'bold',
+            cursor: 'pointer',
+            display: 'inline-block'
           }}>
-            <p style={{ color: '#059669', fontWeight: 'bold', fontSize: '16px' }}>
-              🎉 Đăng nhập thành công!
-            </p>
-
-            {/* Khung hiển thị thông tin cá nhân */}
-            <div style={{
-              backgroundColor: '#f9fafb',
-              border: '1px solid #e5e7eb',
-              borderRadius: '8px',
-              padding: '20px',
-              width: '100%',
-              textAlign: 'left',
-              display: 'flex',
-              flexDirection: 'column',
-              gap: '12px'
-            }}>
-              <h2 style={{ fontSize: '18px', color: '#111827', borderBottom: '2px solid #2563eb', paddingBottom: '6px', marginBottom: '4px', fontWeight: 'bold' }}>
-                Thông Tin Chi Tiết
-              </h2>
-              <div>
-                <strong style={{ color: '#4b5563' }}>Họ và tên:</strong> <span style={{ color: '#111827', fontWeight: '500' }}>Bùi Thùy Dương</span>
-              </div>
-              <div>
-                <strong style={{ color: '#4b5563' }}>Ngày sinh:</strong> <span style={{ color: '#111827' }}>3/3/2013</span>
-              </div>
-              <div>
-                <strong style={{ color: '#4b5563' }}>Địa chỉ:</strong> <span style={{ color: '#111827' }}>Bầu Bàng, TP Hồ Chí Minh</span>
-              </div>
-              <div>
-                <strong style={{ color: '#4b5563' }}>Trường học:</strong> <span style={{ color: '#111827' }}>THCS Lai Uyên</span>
-              </div>
-            </div>
-
-            <p style={{ color: '#6b7280', fontSize: '13px', marginTop: '10px' }}>
-              Quản lý tài khoản hoặc đăng xuất tại đây:
-            </p>
-            <UserButton />
+            <SignInButton mode="modal" />
           </div>
-        </Show>
+          <UserButton />
+        </div>
+
       </div>
     </div>
   )
